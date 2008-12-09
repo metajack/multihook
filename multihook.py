@@ -4,7 +4,8 @@ import sys
 import subprocess
 
 HOOKS = [
-    #['hook-script'], ['hook-script', 'arg1', 'arg2']
+    #['/path/to/hook-script'], 
+    #['/path/to/hook-script', 'arg1', 'arg2'],
 ]
 
 if __name__ == '__main__':
