@@ -11,6 +11,7 @@ HOOKS = [
 if __name__ == '__main__':
     data = sys.stdin.read()
     
+    procs=[]
     for hook in HOOKS:
         p = subprocess.Popen(hook, stdin=subprocess.PIPE,
                              stdout=subprocess.PIPE)
@@ -18,3 +19,12 @@ if __name__ == '__main__':
         p.stdin.close()
 
         sys.stdout.write(p.stdout.read())
+        procs.append(p)
+
+    rv = 0
+    for p in procs:
+        p.wait()
+        if p.returncode != 0:
+            rv = p.returncode
+
+    exit(rv)
