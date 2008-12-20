@@ -12,11 +12,9 @@ if __name__ == '__main__':
     data = sys.stdin.read()
     
     for hook in HOOKS:
-	p = subprocess.Popen(hook, stdin=subprocess.PIPE,
-			     stdout=subprocess.PIPE)
-	p.stdin.write(data)
-	p.stdin.close()
+        p = subprocess.Popen(hook, stdin=subprocess.PIPE,
+                             stdout=subprocess.PIPE)
+        p.stdin.write(data)
+        p.stdin.close()
 
-	sys.stdout.write(p.stdout.read())
-
-	
+        sys.stdout.write(p.stdout.read())
