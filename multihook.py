@@ -15,11 +15,9 @@ if __name__ == '__main__':
     for hook in HOOKS:
         p = subprocess.Popen(hook, stdin=subprocess.PIPE,
                              stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        p.stdin.write(data)
-        p.stdin.close()
-
-        sys.stderr.write(p.stderr.read())
-        sys.stdout.write(p.stdout.read())
+        stdout, stderr = p.communicate(data)
+        sys.stdout.write(stdout)
+        sys.stderr.write(stderr)
         procs.append(p)
 
     rv = 0
